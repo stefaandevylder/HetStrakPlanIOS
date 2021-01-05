@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  HetStrakPlan
 //
-//  Created by Miranda Oszlanszky on 05/01/2021.
+//  Created by Stefaan De Vylder on 05/01/2021.
 //
 
 import UIKit
