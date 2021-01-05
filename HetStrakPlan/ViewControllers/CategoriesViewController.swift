@@ -12,10 +12,15 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var titleView: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 20, right: 0))
+    }
+    
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let categories = ["ontbijt", "lunch", "diner", "tussendoortje", "voorgerecht", "dessert"]
     
@@ -45,11 +50,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.categoryImage.image = UIImage(named: category)
         cell.titleView.text = category
         
-        //Layout of the cell
-        cell.layer.cornerRadius = 25
-        cell.layer.borderWidth = CGFloat(10)
-        cell.layer.borderColor = tableView.backgroundColor?.cgColor
-        
+        //Design for content view in the cell
+        cell.backgroundColor = UIColor.init(named: "LightColor")
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.shadowColor = UIColor.gray.cgColor
+        cell.contentView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        cell.contentView.layer.shadowRadius = 7.0
+        cell.contentView.layer.shadowOpacity = 0.8
         
         return cell
     }
