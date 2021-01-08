@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F662C4425A8650D0008B968 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F662C4325A8650D0008B968 /* ProductsViewController.swift */; };
 		9F9F8C1E25A478AB00990287 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F8C1D25A478AB00990287 /* AppDelegate.swift */; };
 		9F9F8C2025A478AB00990287 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F8C1F25A478AB00990287 /* SceneDelegate.swift */; };
 		9F9F8C2225A478AB00990287 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F8C2125A478AB00990287 /* CategoriesViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F662C4325A8650D0008B968 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		9F9F8C1A25A478AB00990287 /* HetStrakPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HetStrakPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9F8C1D25A478AB00990287 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9F8C1F25A478AB00990287 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				9F9F8C2125A478AB00990287 /* CategoriesViewController.swift */,
+				9F662C4325A8650D0008B968 /* ProductsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				9F9F8C2225A478AB00990287 /* CategoriesViewController.swift in Sources */,
 				9F9F8C1E25A478AB00990287 /* AppDelegate.swift in Sources */,
+				9F662C4425A8650D0008B968 /* ProductsViewController.swift in Sources */,
 				9F9F8C2025A478AB00990287 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

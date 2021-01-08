@@ -12,17 +12,23 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var titleView: UILabel!
     
+    /**
+     Additional design for our table cells.
+     */
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        backgroundColor = UIColor.init(named: "LightColor")
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 20, right: 0))
+        contentView.layer.cornerRadius = 10
     }
     
 }
 
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let categories = ["ontbijt", "lunch", "diner", "tussendoortje", "voorgerecht", "dessert"]
+    
+    var categories = ["Ontbijt", "Lunch", "Diner", "Tussendoortje", "Voorgerecht", "Dessert"]
+    var selectedCategory = ""
     
     @IBOutlet weak var tableCategories: UITableView!
     
@@ -47,16 +53,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
         let category = categories[indexPath.row]
         
-        cell.categoryImage.image = UIImage(named: category)
+        cell.categoryImage.image = UIImage(named: category.lowercased())
         cell.titleView.text = category
-        
-        //Design for content view in the cell
-        cell.backgroundColor = UIColor.init(named: "LightColor")
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.shadowColor = UIColor.gray.cgColor
-        cell.contentView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cell.contentView.layer.shadowRadius = 7.0
-        cell.contentView.layer.shadowOpacity = 0.8
         
         return cell
     }
@@ -65,8 +63,19 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
      When a section is tapped.
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // note that indexPath.section is used rather than indexPath.row
-        print("You tapped cell number \(indexPath.row).")
+        selectedCategory = categories[indexPath.row]
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        performSegue(withIdentifier: "segueToProducts", sender: self)
     }
     
+    /**
+     Passing data between viewcontrollers.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let productsViewController = segue.destination as! ProductsViewController
+
+        productsViewController.title = selectedCategory
+    }
 }
