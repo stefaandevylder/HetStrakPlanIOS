@@ -27,8 +27,10 @@ class CategoryTableViewCell: UITableViewCell {
 
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var categories = ["Ontbijt", "Lunch", "Diner", "Tussendoortje", "Voorgerecht", "Dessert"]
-    var selectedCategory = ""
+    var recipeRepository: RecipeRepository?
+    
+    var categories = ["Ontbijt", "Lunch", "Diner", "Tussendoortje", "Voorgerecht", "Dessert", "Favorieten"]
+    var selectedCategory: String?
     
     @IBOutlet weak var tableCategories: UITableView!
     
@@ -37,6 +39,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableCategories.delegate = self
         tableCategories.dataSource = self
+        
+        recipeRepository = RecipeRepository()
     }
 
     /**
@@ -64,8 +68,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCategory = categories[indexPath.row]
-        
-        tableView.deselectRow(at: indexPath, animated: true)
 
         performSegue(withIdentifier: "segueToProducts", sender: self)
     }
@@ -73,9 +75,19 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     /**
      Passing data between viewcontrollers.
      */
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let productsViewController = segue.destination as! ProductsViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToProducts" {
+            let productsViewController = segue.destination as! ProductsViewController
 
-        productsViewController.title = selectedCategory
+            productsViewController.recipeRepository = recipeRepository
+            productsViewController.title = selectedCategory
+            
+            if selectedCategory == "Favorieten" {
+                productsViewController.recipes = recipeRepository?.getLikedRecipes() ?? []
+            } else {
+                productsViewController.recipes = recipeRepository?.getRecipes(category: selectedCategory!) ?? []
+            }
+        }
     }
+    
 }

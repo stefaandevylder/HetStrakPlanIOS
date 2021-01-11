@@ -1,0 +1,6 @@
+framework module Pods_HetStrakPlan {
+  umbrella header "Pods-HetStrakPlan-umbrella.h"
+
+  export *
+  module * { export * }
+}
